@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rozrost ziaren</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="sketch.js"></script>
+    <script src="eventsHendler.js"></script>
+    <script src="Grid.js"></script>
+    <script src="Cell.js"></script>
+    <script src="Growth.js"></script>
+    <link rel="stylesheet" type="text/css" href="./colors.css" />
+
+</head>
+
+<body>
+    <div class="TOP">
+        <label for="width">Szerokość: </label>
+        <input type="text" id="width" value="10">
+        <label for="lenght">Długość</label>
+        <input type="text" id="lenght" value="10">
+        <select id="neighborhood">
+            <option value="vonNeumann">Von Neumann</option>
+            <option value="penRand">Pentagonalne losowe</option>
+            <option value="heksa">Heksagonalne</option>
+            <option value="moore">Moore</option>
+            <option value="radius">Z promieniem</option>
+        </select>
+        <label for="embroys">Liczba zarodków</label>
+        <input type="text" id="embroys" value="5">
+
+
+        <select id="nucleation">
+            <option value="jednorodne">Jednorodne</option>
+            <option value="zPromieniem">Z promieniem</option>
+            <option value="losowe">Losowe</option>
+            <option value="wyklinanie">Wyklinanie</option>
+        </select>
+        <label for="rad">Promień: </label>
+        <input type="text" id="rad" value="5">
+        <button onclick="buttonStart()">Start</button>
+    </div>
+
+</body>
+
+</html>

@@ -8,20 +8,17 @@ class Cell{
     
    
 
-    constructor(_x,_y,_id)
-    {
+    constructor(_x,_y,_id){
         this.x=_x;
         this.y=_y;
         this.id=_id;
         this.gravityCenter=new Array(2);
         this.gravityCenter[0]=this.x+Math.random()*(12,5 - 0) + 0;
         this.gravityCenter[1]=this.y+Math.random()*(12,5 - 0) + 0;
-        
+        this.prevGen=_id;
     }
 
-    nextGeneration(){
-        this.prevGen=this.thisGen;
-    }
+   
 
     get color(){
         return this.color;

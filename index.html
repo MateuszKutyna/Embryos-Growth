@@ -16,9 +16,9 @@
 <body>
     <div class="TOP">
         <label for="width">Szerokość: </label>
-        <input type="text" id="width" value="10">
+        <input type="text" id="width" value="100">
         <label for="lenght">Długość</label>
-        <input type="text" id="lenght" value="10">
+        <input type="text" id="lenght" value="100">
         <select id="neighborhood">
             <option value="vonNeumann">Von Neumann</option>
             <option value="penRand">Pentagonalne losowe</option>
@@ -35,9 +35,20 @@
             <option value="zPromieniem">Z promieniem</option>
             <option value="losowe">Losowe</option>
             <option value="wyklinanie">Wyklinanie</option>
+        </select><br>
+        <label for="jendorodneX">Ilosc zarodkow w kolumnie:</label>
+        <input type="text" id="jednorodneX" value="10">
+        <label for="jednorodneY">Ilosc zarodkow w rzędzie:</label>
+        <input type="text" id="jednorodneY" value="10">
+        <label for="rad">Promień zarodkowanie: </label>
+        <input type="text" id="rad" value="5"><br>
+        <label for="boundaryCondtion">Warunek Brzegowy</label>
+        <select id="boundaryCondtion">
+            <option value="periodyczne">Periodyczne</option>
+            <option value="absorbujace">Absorbujace</option>
         </select>
-        <label for="rad">Promień: </label>
-        <input type="text" id="rad" value="5">
+        <label for="radSasiedz">Promien sasiedztwa:</label>
+        <input type="text" id="radSasiedz" value="50">
         <button onclick="buttonStart()">Start</button>
     </div>
 

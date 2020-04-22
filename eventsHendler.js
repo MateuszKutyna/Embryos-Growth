@@ -3,6 +3,7 @@ let newGrid;
 let click;
 let reczna=false;
 let g_ID;
+
 function buttonStart(){
 
     if(!reczna){
@@ -12,9 +13,13 @@ function buttonStart(){
         let nucleation=document.getElementById("nucleation").value;
         let neighborhood = document.getElementById("neighborhood").value;
         let radius = document.getElementById("rad").value;
-        newGrid=new Grid(width,lenght,embryos,neighborhood,nucleation,radius);
-        resizeCanvas(width*newGrid.scl,lenght*newGrid.scl);
-        drawGrid(newGrid);
+        let boundaryCondition=document.getElementById("boundaryCondtion").value;
+        let radiusSa=document.getElementById("radSasiedz").value;
+        let jednorodneX=document.getElementById("jednorodneX").value;
+        let jednorodneY=document.getElementById("jednorodneY").value
+        newGrid=new Grid(width,lenght,embryos,neighborhood,nucleation,radius,boundaryCondition,radiusSa,jednorodneX,jednorodneY);
+        resizeCanvas(800,800);
+       
     }
     if(click<2){
         click++;
@@ -25,10 +30,14 @@ function buttonStart(){
     if(newGrid.nucleation==="wyklinanie"){
         reczna=true;
     }
-    
+    if(click==2 && newGrid.nucleation==="wyklinanie"){
+        reczna=false;
+        started=false;
+        click=0;
+    }
     
     console.log(newGrid);
-    
+    if(reczna)drawGrid();
     started?started=false:started=true;
     
 }

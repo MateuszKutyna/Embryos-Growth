@@ -7,22 +7,32 @@ class Grid{
     neighborhood;
     nucleation;
     radius;
-    
-    
-    constructor(_col,_row,_embryos,_neighborhood,_nucleation,_radius){
+    boundaryCondtion;
+    radiusNeighbor;
+    jednorodneX;
+    jednorodneY;
+    constructor(_col,_row,_embryos,_neighborhood,_nucleation,_radius,_bC,_radSa,_jedX,_jedY){
         if(_col <= 0 || _row <=0 )
         {
             alert("Wielkość siatki musi być większa od zera!");
             return;
         }  
-
+        this.neighborhood=_neighborhood;
         this.columns=Number(_col);
         this.rows=Number(_row);
         this.embryos=Number(_embryos);
-        this.neighborhood=_neighborhood;
         this.nucleation=_nucleation;
         this.radius=_radius;
-        this.scl=12.5;
+        this.boundaryCondtion=_bC;
+        this.radiusNeighbor=_radSa;
+        this.jednorodneX=_jedX;
+        this.jednorodneY=_jedY;
+        if(this.rows>this.columns){
+            this.scl=800/this.rows;
+        }else{
+            this.scl=800/this.columns;
+        }
+        //this.scl=3;
        
         this.createGrid();
         this.fillWithEmbroys();
@@ -37,9 +47,10 @@ class Grid{
             this.array[i]=new Array(this.rows);
         
         for(let i=0;i<this.columns;i++){
-            y=i*this.scl;
+            x=i*this.scl;
+            
             for(let j=0;j<this.rows;j++){
-                x=j*this.scl;
+                y=j*this.scl;
                 this.array[i][j]=new Cell(Number(x),Number(y),0)
                
             }
@@ -69,11 +80,12 @@ class Grid{
     }
     evenlySpacedEmbroys(){
         let _id=1; // Setting id's of cells 
-        let space = 4;
-        print(space);
-        for(let i=0 ;i<this.columns;i+=space){
-            for(let j=0;j<this.rows;j+=space){
-                if(_id<=this.embryos){
+        let spaceX = Math.floor(this.columns/this.jednorodneX)+1;
+        let spaceY = Math.floor(this.rows/this.jednorodneY)+1;
+        let sumJendo=this.jednorodneX+this.jednorodneY;
+        for(let i=1 ;i<this.columns;i+=spaceX){
+            for(let j=1;j<this.rows;j+=spaceY){
+                if(_id<=sumJendo){
                     this.array[i][j].id=_id;
                     this.array[i][j].color=this.getRandomColor();
                     _id++;
@@ -103,7 +115,7 @@ class Grid{
     randomInRange(){
         let iterEmbroys=0;
         let randomX,randomY;
-        let range=Math.ceil(this.radius/12.5); //Checks every sqaure in this range
+        let range=Math.ceil(this.radius/this.scl); //Checks every sqaure in this range
       
         let _id=1;
         let countInRadius;
@@ -153,5 +165,21 @@ class Grid{
 
     get scl(){
         return this.scl;
+    }
+    
+    get neighborhood(){
+        return this.neighborhood;
+    }
+
+    get nucleation(){
+        return this.nucleation;
+    }
+
+    get embryos(){
+        return this.embryos;
+
+    }
+    get boundaryCondtion(){
+        return this.boundaryCondtion;
     }
 }
